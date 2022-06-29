@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <SDL.h>
-#include <stdbool.h>
 #include <math.h>
 
 #define SCREEN_WIDTH 800
@@ -43,7 +42,6 @@ Point3D CenterScreen(Point3D original);
 
 void init();
 void draw();
-int input();
 void close();
 
 int main(int argc, char* argv[])
@@ -58,18 +56,10 @@ int main(int argc, char* argv[])
     //Init everything
     init();
 
-    //Gameloop
+    //Infinite loop
     while (is_running)
     {
         int startTime = SDL_GetTicks();
-
-        //Input handle
-        if (input() == -1)
-            is_running = false;
-        else
-        {
-            //Input key here
-        }
 
         //Rotate Cube
         cube.rotation.x += 0.02;
@@ -131,31 +121,6 @@ void init()
     cube.points[6] = Create(200, 200, 200);
     cube.points[7] = Create(200, -200, 200);
 
-}
-
-//Handle Input
-int input()
-{
-    SDL_Event event;
-
-    while(SDL_PollEvent(&event))
-    {
-        if (event.type == SDL_QUIT)
-            return -1;
-
-        if (event.type == SDL_KEYDOWN)
-        {
-            //switch(event.key.keysym.sym){
-
-            //}
-        }
-        if (event.type == SDL_KEYUP)
-        {
-
-        }
-    }
-
-    return 0;
 }
 
 //Draw
